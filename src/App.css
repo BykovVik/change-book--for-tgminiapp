@@ -1,19 +1,50 @@
-.App {
-    text-align: center;
+* {
+    margin: 0;
+    padding: 0;
 }
-.App-header {
+.landscapeDisplay {
+    text-align: center;
     background-color: #282c34;
     min-height: 100vh;
     display: flex;
-    flex-direction: column;
     align-items: center;
-    justify-content: center;
     font-size: calc(10px + 2vmin);
     color: white;
 }
+.portraitDisplay {
+    background-color: #fa9408;
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    z-index: 0;
+}
+.greenSide {
+    background-color: #0e4d4ef8;
+    height: inherit;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 40%;
+    text-align: center;
+    z-index: 1;
+}
 .App-logo {
-    height: 40vmin;
+    width: 90%;
+    height: auto;
     pointer-events: none;
+    z-index: 2;
+}
+.title {
+    font-size: 32px;
+    z-index: 10;
+}
+.coinBox > img {
+    width: 125px;
+    height: 125px;
+    padding: 5px;
 }
 @keyframes App-logo-spin {
     from {
