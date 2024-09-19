@@ -2,6 +2,7 @@ import React, {useState} from "react";
 import OrientationDetector from "../components/OrientationDtect";
 import klipartz from '../media/klipartz.png'
 import coin_o from '../media/coin_o.png'
+import coin_p from '../media/coin_p.png'
 
 const HomePage:React.FC = () => {
     const [orientation, setOrientation] = useState<'portrait' | 'landscape'>(
@@ -22,13 +23,21 @@ const HomePage:React.FC = () => {
             {orientation === 'portrait'&&
                 <div className="portraitDisplay">
                     <div className="greenSide">
-                        <div className="coinBox">
+                        <div className="coinBoxTop">
                             <img src={coin_o} alt="pic"></img>
                         </div>
                     </div>
-                    <div>
-                        <h3 className="title">Приложение работает</h3>
-                        <img className="App-logo" src={klipartz} alt="pic"/>
+                    <div className="logoBox">
+                        <img className="appLogo" src={klipartz} alt="pic"/>
+                    </div>
+                    <div className="buttonBox">
+                        <h3 className="title">kHurA</h3>
+                        <h3 className="title">nepeMeH</h3>
+                        <a href="/" className="button">Начать гадание</a>
+                        <a href="/" className="button">Ознакомиться с инструкцией</a>
+                    </div>
+                    <div className="coinBoxBottom">
+                        <img src={coin_p} alt="pic"></img>
                     </div>
                 </div>
             }
