@@ -10,15 +10,15 @@ const GamePage: React.FC = () => {
 
     const handleClick = () => {
         dispatch(updateStrip());
-      };
+    };
     
-      const handleReset = () => {
+    const handleReset = () => {
         dispatch(resetStrip());
     };
 
     return (
         <div>
-            {strips.map((strip, index) => (
+            {strips.slice().reverse().map((strip, index) => (
                 <div key={index} style={{ height: '50px', backgroundColor: strip ? 'blue' : 'grey' }}>
                 Полоска {index + 1}
                 </div>
