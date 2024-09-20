@@ -29,6 +29,7 @@
     z-index: 0;
     overflow: hidden;
 }
+/*************************************************************HOME PAGE *******************************************/
 .greenSide {
     background-color: #0e4d4ef8;
     height: inherit;
@@ -71,7 +72,7 @@
 .buttonBox > a {
     text-align: center;
     display: block;
-    background-color: rgba(0, 0, 0, 0.473);
+    background-color: rgba(0, 0, 0, 0.5);
     padding: 20px;
     margin-bottom: 10px;
     border-radius: 5px;
@@ -103,4 +104,44 @@
     .appLogo {
         animation: App-logo-spin infinite 20s linear;
     }
+}
+/********************************************************GAME PAGE************************************************/
+.topLine {
+    position: absolute;
+    left: 0;
+    top: 0;
+	width: 0;
+	height: 0;
+	border-top: 200px solid #0e4d4e; 
+	border-right: 200px solid transparent;
+    cursor: pointer;
+}
+.fingerPrint {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+}
+.fingerPrint > img {
+    width: 64px;
+    height: auto;
+}
+.stripBox {
+    padding: 5%;
+}
+.coinBox {
+    display: flex;
+    justify-content: center;
+}
+.coinBox > img {
+    width: 30%;
+    height: auto;
+}
+.buttonBox {
+    text-align: center;
+    margin: 10% 5%;
+}
+.buttonBox > button {
+    background-color: rgba(0, 0, 0, 0.5);
+    outline: none;
+    border: none;
 }

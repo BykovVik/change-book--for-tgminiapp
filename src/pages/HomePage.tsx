@@ -33,7 +33,7 @@ const HomePage:React.FC = () => {
                     <div className="buttonBox">
                         <h3 className="title">kHurA</h3>
                         <h3 className="title">nepeMeH</h3>
-                        <a href="/" className="button">Начать гадание</a>
+                        <a href="/game" className="button">Начать гадание</a>
                         <a href="/" className="button">Ознакомиться с инструкцией</a>
                     </div>
                     <div className="coinBoxBottom">
