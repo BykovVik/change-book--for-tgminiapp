@@ -9,6 +9,7 @@ import coin_o from '../media/coin_o.png'
 import coin_p from '../media/coin_p.png'
 import fingerprint from '../media/Fingerprint.png'
 import { useNavigate } from "react-router-dom";
+import OrientationDetector from "../components/OrientationDtect";
 
 const GamePage: React.FC = () => {
     const dispatch: AppDispatch = useDispatch()
@@ -16,7 +17,15 @@ const GamePage: React.FC = () => {
     const navigate = useNavigate();
 
     const [coins, setCoins] = useState<string[]>([coin_p, coin_p, coin_p])
-    const [lines, setLines] = useState<string[]>(Array(6).fill(empty_line));;
+    const [lines, setLines] = useState<string[]>(Array(6).fill(empty_line));
+
+    const [orientation, setOrientation] = useState<'portrait' | 'landscape'>(
+        window.innerWidth > window.innerHeight ? 'landscape' : 'portrait'
+    );
+    
+    const handleOrientationChange = (newOrientation: 'portrait' | 'landscape') => {
+        setOrientation(newOrientation);
+    };
 
     const randomizeCoins = () => {
         const coinImages = [coin_o, coin_p];
@@ -26,6 +35,7 @@ const GamePage: React.FC = () => {
         const countCoinO = newCoins.filter(coin => coin === coin_o).length;
 
         let newLineImage = empty_line;
+        
         if (countCoinO > 1) {
             newLineImage = one_line;
         } else if (countCoinO <= 1) {
@@ -51,12 +61,24 @@ const GamePage: React.FC = () => {
         navigate("/")
     };
 
+    const handleResult = () => {
+        navigate("/result")
+    }
+
     return (
+        <>
+        <OrientationDetector onOrientationChange={handleOrientationChange} />
+            {orientation === 'landscape'&&
+                <div className="landscapeDisplay">
+                    <h1>Приложение работает исключительно в портретном режиме</h1>
+                </div>
+            }
+        {orientation === 'portrait'&&
         <div className="portraitDisplay">
             <div className="gameBox">
                 <div className="topLine"/>
                 <div onClick={handleReset} className="fingerPrint">
-                    <img src={fingerprint} alt="pic" />
+                    <img className="shakeAnimation" src={fingerprint} alt="pic" />
                 </div>
                 <div className="stripBox">
                     {lines.slice().reverse().map((line, index) => (
@@ -69,12 +91,21 @@ const GamePage: React.FC = () => {
                     ))}
                 </div>
                 <div className="buttonBox">
-                    <button onClick={handleClick} disabled={currentStrip >= 6}>
+                    {currentStrip <= 5&&
+                    <button onClick={handleClick}>
                         Бросить монеты
                     </button>
+                    }
+                    {currentStrip === 6&&
+                    <button onClick={handleResult}>
+                        Узнать результат
+                    </button>
+                    }
                 </div>
             </div>
         </div>
+        }
+        </>
     )
 }
 export default GamePage
