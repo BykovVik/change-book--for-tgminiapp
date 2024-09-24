@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useState} from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { updateStrip, resetStrip } from "../store/stripsSlises";
 import { RootState, AppDispatch } from "../store";
@@ -12,12 +12,38 @@ import { useNavigate } from "react-router-dom";
 
 const GamePage: React.FC = () => {
     const dispatch: AppDispatch = useDispatch()
-    const strips = useSelector((state: RootState) => state.strips.strips);
     const currentStrip = useSelector((state: RootState) => state.strips.currentStrip);
     const navigate = useNavigate();
 
+    const [coins, setCoins] = useState<string[]>([coin_p, coin_p, coin_p])
+    const [lines, setLines] = useState<string[]>(Array(6).fill(empty_line));;
+
+    const randomizeCoins = () => {
+        const coinImages = [coin_o, coin_p];
+        const newCoins = Array(3).fill(null).map(() => coinImages[Math.floor(Math.random() * coinImages.length)]);
+        setCoins(newCoins);
+
+        const countCoinO = newCoins.filter(coin => coin === coin_o).length;
+
+        let newLineImage = empty_line;
+        if (countCoinO > 1) {
+            newLineImage = one_line;
+        } else if (countCoinO <= 1) {
+            newLineImage = two_line;
+        }
+
+        setLines(prevLines => {
+            const updatedLines = [...prevLines];
+            if (currentStrip < 6) {
+                updatedLines[currentStrip] = newLineImage;
+            }
+            return updatedLines;
+        });
+    };
+
     const handleClick = () => {
         dispatch(updateStrip());
+        randomizeCoins();
     };
     
     const handleReset = () => { 
@@ -33,14 +59,14 @@ const GamePage: React.FC = () => {
                     <img src={fingerprint} alt="pic" />
                 </div>
                 <div className="stripBox">
-                    {strips.slice().reverse().map((strip, index) => (
-                        <img src={strip ? one_line : empty_line} key={index} style={{ height: 'auto', width: '100%' }}/>
+                    {lines.slice().reverse().map((line, index) => (
+                        <img src={line} alt="pic" key={index} style={{ height: 'auto', width: '100%' }} />
                     ))}
                 </div>
                 <div className="coinBox">
-                    <img src={coin_p} alt="pic" />
-                    <img src={coin_p} alt="pic" />
-                    <img src={coin_p} alt="pic" />
+                    {coins.map((coin, index) => (
+                        <img src={coin} alt="pic" key={index} />
+                    ))}
                 </div>
                 <div className="buttonBox">
                     <button onClick={handleClick} disabled={currentStrip >= 6}>
