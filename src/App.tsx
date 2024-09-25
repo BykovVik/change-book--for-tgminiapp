@@ -4,14 +4,16 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import HomePage from './pages/HomePage';
 import GamePage from './pages/GamePage';
 import ResultPage from './pages/ResultPage';
+import DescriptionPage from './pages/DescriptionPage';
 
 function App() {
     return (
-        <Router>
+        <Router basename={process.env.PUBLIC_URL}>
             <Routes>
                 <Route path="/" element={<HomePage />} />
                 <Route path='/game' element={<GamePage />} />
                 <Route path='/result' element={<ResultPage />} />
+                <Route path='/description' element={<DescriptionPage/>} />
             </Routes>
         </Router>
     );

@@ -1,0 +1,20 @@
+{
+  "files": {
+    "main.css": "/change-book--for-tgminiapp/static/css/main.bd3e7176.css",
+    "main.js": "/change-book--for-tgminiapp/static/js/main.739f1314.js",
+    "static/media/coin_o.png": "/change-book--for-tgminiapp/static/media/coin_o.3a3341e3fedae87e31bc.png",
+    "static/media/coin_p.png": "/change-book--for-tgminiapp/static/media/coin_p.1cf845423f7f646e6132.png",
+    "static/media/KONFUCF_.ttf": "/change-book--for-tgminiapp/static/media/KONFUCF_.fe7e25767183a1e1136c.ttf",
+    "static/media/Fingerprint.png": "/change-book--for-tgminiapp/static/media/Fingerprint.2c08e727be4746a712dc.png",
+    "static/media/two_line.png": "/change-book--for-tgminiapp/static/media/two_line.4a2397b5bea2e4fa7d89.png",
+    "static/media/one_line.png": "/change-book--for-tgminiapp/static/media/one_line.50fbb680e7a719bcf014.png",
+    "static/media/klipartz.png": "/change-book--for-tgminiapp/static/media/klipartz.a0dbbadf5ff94f49abb4.png",
+    "index.html": "/change-book--for-tgminiapp/index.html",
+    "main.bd3e7176.css.map": "/change-book--for-tgminiapp/static/css/main.bd3e7176.css.map",
+    "main.739f1314.js.map": "/change-book--for-tgminiapp/static/js/main.739f1314.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.bd3e7176.css",
+    "static/js/main.739f1314.js"
+  ]
+}

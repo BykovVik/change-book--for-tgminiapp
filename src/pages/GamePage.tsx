@@ -62,7 +62,11 @@ const GamePage: React.FC = () => {
     };
 
     const handleResult = () => {
-        navigate("/result")
+        const result = lines.map(path => {
+            const fullFileName = path.split('/').pop();  
+            return fullFileName?.split('.')[0];
+        });
+        navigate("/result", { state: { resultString: result.join(", ") }})
     }
 
     return (
@@ -70,7 +74,7 @@ const GamePage: React.FC = () => {
         <OrientationDetector onOrientationChange={handleOrientationChange} />
             {orientation === 'landscape'&&
                 <div className="landscapeDisplay">
-                    <h1>Приложение работает исключительно в портретном режиме</h1>
+                    <h3>Приложение работает исключительно в портретном режиме</h3>
                 </div>
             }
         {orientation === 'portrait'&&
@@ -92,12 +96,12 @@ const GamePage: React.FC = () => {
                 </div>
                 <div className="buttonBox">
                     {currentStrip <= 5&&
-                    <button onClick={handleClick}>
+                    <button onClick={handleClick} className="smallTextSize">
                         Бросить монеты
                     </button>
                     }
                     {currentStrip === 6&&
-                    <button onClick={handleResult}>
+                    <button onClick={handleResult} className="smallTextSize">
                         Узнать результат
                     </button>
                     }

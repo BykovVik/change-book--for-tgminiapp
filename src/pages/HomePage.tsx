@@ -17,7 +17,7 @@ const HomePage:React.FC = () => {
             <OrientationDetector onOrientationChange={handleOrientationChange} />
             {orientation === 'landscape'&&
                 <div className="landscapeDisplay">
-                    <h1>Приложение работает исключительно в портретном режиме</h1>
+                    <h3>Приложение работает исключительно в портретном режиме</h3>
                 </div>
             }
             {orientation === 'portrait'&&
@@ -31,10 +31,10 @@ const HomePage:React.FC = () => {
                         <img className="appLogo" src={klipartz} alt="pic"/>
                     </div>
                     <div className="buttonBox">
-                        <h3 className="title">kHurA</h3>
-                        <h3 className="title">nepeMeH</h3>
-                        <a href="/game" className="button">Начать гадание</a>
-                        <a href="/" className="button">Ознакомиться с инструкцией</a>
+                        <h3 className="title mainTextSize">kHurA</h3>
+                        <h3 className="title mainTextSize">nepeMeH</h3>
+                        <a href="/game" className="button smallTextSize">Начать гадание</a>
+                        <a href="/description" className="button smallTextSize">Ознакомиться с инструкцией</a>
                     </div>
                     <div className="coinBoxBottom">
                         <img src={coin_p} alt="pic"></img>
