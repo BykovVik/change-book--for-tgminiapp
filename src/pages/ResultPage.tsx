@@ -4,16 +4,10 @@ import fingerprint from '../media/Fingerprint.png'
 import { useNavigate, useLocation } from "react-router-dom";
 import data from '../data/data.json'
 
-const tg = (window as any).Telegram?.WebApp || null;
-
 const ResultPage:React.FC = () => {
     const navigate = useNavigate()
     const location = useLocation();
     const resultString = location.state?.resultString as keyof typeof data | undefined;
-
-    useEffect(() => {
-        tg?.ready();
-    }, []);
 
     const [orientation, setOrientation] = useState<'portrait' | 'landscape'>(
         window.innerWidth > window.innerHeight ? 'landscape' : 'portrait'
@@ -28,10 +22,16 @@ const ResultPage:React.FC = () => {
     };
 
     const handleSendResult = () => {
-        if (resultString) {
-            tg.sendData(data[resultString]);
+        if (window.Telegram?.WebApp) {
+            if (resultString) {
+                let res = data[resultString]
+                window.Telegram.WebApp.sendData(res);
+                window.Telegram.WebApp.close()
+            }
+        } else {
+            console.log("Telegram Web App SDK не доступен");
+            navigate("/")
         }
-        navigate("/")
     };
     return (
         <>
@@ -43,9 +43,8 @@ const ResultPage:React.FC = () => {
             }
             {orientation === 'portrait'&&
                 <div className="portraitDisplay">
-                    <div className="topLine"/>
-                    <div onClick={handleReset} className="fingerPrint">
-                        <img className="shakeAnimation" src={fingerprint} alt="pic" />
+                    <div className="topLine">
+                        <img onClick={handleReset} className="shakeAnimation" src={fingerprint} alt="pic" />
                     </div>
                     <div className="resultBox">
                         <div className="result smallTextSize">

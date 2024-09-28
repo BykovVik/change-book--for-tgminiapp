@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, {useState, useEffect} from "react";
 import OrientationDetector from "../components/OrientationDtect";
 import klipartz from '../media/klipartz.png'
 import coin_o from '../media/coin_o.png'
@@ -13,6 +13,14 @@ const HomePage:React.FC = () => {
     const handleOrientationChange = (newOrientation: 'portrait' | 'landscape') => {
         setOrientation(newOrientation);
     };
+    useEffect(() => {
+        if (window.Telegram?.WebApp) {
+            window.Telegram.WebApp.ready();
+            window.Telegram.WebApp.expand();
+        } else {
+            console.log("Telegram Web App SDK не доступен");
+        }
+    }, []);
     return (
         <>
             <OrientationDetector onOrientationChange={handleOrientationChange} />

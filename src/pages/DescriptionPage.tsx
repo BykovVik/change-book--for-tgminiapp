@@ -28,9 +28,8 @@ const DescriptionPage:React.FC = () => {
             }
             {orientation === 'portrait'&&
                 <div className="portraitDisplay">
-                    <div className="topLine"/>
-                    <div onClick={handleReset} className="fingerPrint">
-                        <img className="shakeAnimation" src={fingerprint} alt="pic" />
+                    <div className="topLine">
+                        <img onClick={handleReset} className="shakeAnimation" src={fingerprint} alt="pic" />
                     </div>
                     <div className="resultBox">
                         <div className="result smallTextSize">

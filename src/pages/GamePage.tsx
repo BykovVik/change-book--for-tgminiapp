@@ -18,6 +18,7 @@ const GamePage: React.FC = () => {
 
     const [coins, setCoins] = useState<string[]>([coin_p, coin_p, coin_p])
     const [lines, setLines] = useState<string[]>(Array(6).fill(empty_line));
+    const [result, setResult] = useState<string>("")
 
     const [orientation, setOrientation] = useState<'portrait' | 'landscape'>(
         window.innerWidth > window.innerHeight ? 'landscape' : 'portrait'
@@ -38,7 +39,9 @@ const GamePage: React.FC = () => {
         
         if (countCoinO > 1) {
             newLineImage = one_line;
+            setResult(result + "one_line, ")
         } else if (countCoinO <= 1) {
+            setResult(result + "two_line, ")
             newLineImage = two_line;
         }
 
@@ -62,12 +65,8 @@ const GamePage: React.FC = () => {
     };
 
     const handleResult = () => {
-        const result = lines.map(path => {
-            const fullFileName = path.split('/').pop();  
-            return fullFileName?.split('.')[0];
-        });
+        navigate("/result", { state: { resultString: result.slice(0, -2) }})
         dispatch(resetStrip());
-        navigate("/result", { state: { resultString: result.join(", ") }})
     }
 
     return (
@@ -81,9 +80,8 @@ const GamePage: React.FC = () => {
         {orientation === 'portrait'&&
         <div className="portraitDisplay">
             <div className="gameBox">
-                <div className="topLine"/>
-                <div onClick={handleReset} className="fingerPrint">
-                    <img className="shakeAnimation" src={fingerprint} alt="pic" />
+                <div className="topLine">
+                    <img onClick={handleReset} className="shakeAnimation" src={fingerprint} alt="pic" />
                 </div>
                 <div className="stripBox">
                     {lines.slice().reverse().map((line, index) => (

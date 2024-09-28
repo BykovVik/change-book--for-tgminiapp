@@ -1,6 +1,6 @@
 @font-face {
     font-family: 'konfu';
-    src: url('./media/fonts/KONFUCF_.ttf') format('truetype');
+    src: url('./media/fonts/konfucf.ttf') format('truetype');
     font-weight: normal;
     font-style: normal;
 }
@@ -101,20 +101,14 @@
 /********************************************************GAME PAGE************************************************/
 .topLine {
     position: absolute;
-    left: 0;
     top: 0;
-	width: 0;
-	height: 0;
-	border-top: 200px solid #0e4d4e; 
-	border-right: 200px solid transparent;
-    cursor: pointer;
+    left: 0;
+    background-color: #0e4d4e;
+	width: 100%;
+	height: auto;
+    padding-left: 5%;
 }
-.fingerPrint {
-    position: absolute;
-    top: 20px;
-    left: 20px;
-}
-.fingerPrint > img {
+.topLine > img {
     width: 64px;
     height: auto;
 }
