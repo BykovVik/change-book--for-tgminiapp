@@ -8,9 +8,9 @@ import DescriptionPage from './pages/DescriptionPage';
 
 function App() {
     return (
-        <Router basename={process.env.PUBLIC_URL}>
+        <Router basename={'/github-page-for-tg-change-book'}>
             <Routes>
-                <Route path="/" element={<HomePage />} />
+                <Route path='/' element={<HomePage />} />
                 <Route path='/game' element={<GamePage />} />
                 <Route path='/result' element={<ResultPage />} />
                 <Route path='/description' element={<DescriptionPage/>} />

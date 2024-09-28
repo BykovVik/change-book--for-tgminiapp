@@ -66,6 +66,7 @@ const GamePage: React.FC = () => {
             const fullFileName = path.split('/').pop();  
             return fullFileName?.split('.')[0];
         });
+        dispatch(resetStrip());
         navigate("/result", { state: { resultString: result.join(", ") }})
     }
 
